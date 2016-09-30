@@ -27,7 +27,7 @@ namespace TriangleProject
                         Second = Convert.ToInt32(Console.ReadLine());
                         Third = Convert.ToInt32(Console.ReadLine());
                         Triangle DataFromUser = Triangle.From3Sides(First, Second, Third);
-                        Console.WriteLine(DataFromUser.Area());
+                        DataFromUser.Area();
 
                     }
                     if (action == 2)
@@ -37,7 +37,7 @@ namespace TriangleProject
                         Second = Convert.ToInt32(Console.ReadLine());
                         Third = Convert.ToInt32(Console.ReadLine());
                         Triangle DataFromUser = Triangle.From2SidesAndAngle(First, Second, Third);
-                        Console.WriteLine(" Площадь треугольника " + DataFromUser.Area());
+                        DataFromUser.Area();
                         //  Console.WriteLine("Cтороны" + DataFromUser.side1 + " " + DataFromUser.side2 + " " + DataFromUser.side3 + " " + DataFromUser.semiperimeter + " " + DataFromUser.S);
                     }
                     if (action == 3)
@@ -47,39 +47,26 @@ namespace TriangleProject
                         Second = Convert.ToInt32(Console.ReadLine());
                         Third = Convert.ToInt32(Console.ReadLine());
                         Triangle DataFromUser = Triangle.FromSideAnd2Angles(First, Second, Third);
-                        Console.WriteLine(" Площадь треугольника " + DataFromUser.Area());
+                        DataFromUser.Area();
                         //  Console.WriteLine("Cтороны"+ DataFromUser.side1+" "+ DataFromUser.side2 + " "+DataFromUser.side3 + " " + DataFromUser.semiperimeter+ " " + DataFromUser.S);
                     }
-                    else
-                    {   
+                    if (!(action == 1)&&!(action == 2)&&!(action == 3))
+                    {
+                        action = 0;
                         throw new Exception("Неверно введены данные");
                         //Console.WriteLine("Неверно введены данные");
 
                     }
                 }
-
                 catch (FormatException ex)
                 {
                     action = 0;
                     Console.WriteLine("Ошибка: " + ex.Message + "\n\n");
                 }
-                catch (Exception ex) 
+                catch (Exception exc) 
                 {
-                    action = 0;
-                    Console.WriteLine("Ошибка: " + ex.Message + "\n\n");
+                    Console.WriteLine("Ошибка: " + exc.Message + "\n\n");
                 }
-               //finally
-               // ////{
-               // //     catch (ArgumentOutOfRangeException ex) when(!(action == 1) && !(action == 2) && !(action == 3))
-               // {
-
-               //     if (!(action == 1) && !(action == 2) && !(action == 3))
-               //     {
-               //         action = 0;
-               //         Console.WriteLine("Неверный формат действия\n");
-               //     }
-
-               // }
             }
             Console.ReadKey(true);
 

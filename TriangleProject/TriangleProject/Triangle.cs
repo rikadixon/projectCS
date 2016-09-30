@@ -32,22 +32,23 @@ namespace TriangleProject
         public static Triangle From2SidesAndAngle(double sidefromuser1, double sidefromuser2, double fromuserangle)
         {
             Triangle TriangleObject = new Triangle();
+                if ((fromuserangle <= 180) && (fromuserangle >= 0) && (sidefromuser1 > 0) && (sidefromuser2 > 0))
+                {
+                    TriangleObject.Side1 = sidefromuser1;
+                    TriangleObject.Side2 = sidefromuser2;
+                    double radian = fromuserangle * Math.PI / 180;
+                    TriangleObject.Side3 = Math.Sqrt(Math.Pow(TriangleObject.Side1, 2) + Math.Pow(TriangleObject.Side2, 2) - 2 * TriangleObject.Side1 * TriangleObject.Side2 * Math.Cos(radian));
+                    return TriangleObject;
+                }
+                else
+                {
+                    throw new Exception("Неверно введены данные_");
+                    //Console.WriteLine("Неверно введены данные");
+                }
+      
+                }
+           
 
-            if ((fromuserangle <= 180) && (fromuserangle >= 0) && (sidefromuser1 > 0) && (sidefromuser2 > 0))
-            {
-                TriangleObject.Side1 = sidefromuser1;
-                TriangleObject.Side2 = sidefromuser2;
-                double radian = fromuserangle * Math.PI / 180;
-                TriangleObject.Side3 = Math.Sqrt(Math.Pow(TriangleObject.Side1,2) + Math.Pow(TriangleObject.Side2, 2) - 2 * TriangleObject.Side1 * TriangleObject.Side2 * Math.Cos(radian));
-                return TriangleObject;
-            }
-            else
-            {
-                throw new Exception("Неверно введены данные");
-                //Console.WriteLine("Неверно введены данные");
-                
-            }
-        }
 
         public static Triangle FromSideAnd2Angles(double fromuserangle, double fromuserangle2, double sidefromuser1)
         {
