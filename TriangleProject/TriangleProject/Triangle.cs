@@ -8,81 +8,80 @@ namespace TriangleProject
 {
     public class Triangle
     {
-        double Side1, Side2, Side3, S;
-        public Triangle() { }
-        //Triangle TriangleObject = new Triangle();
-        public static Triangle From3Sides(double sidefromuser1, double sidefromuser2, double sidefromuser3)
+
+
+        public double side1 { get; private set; }
+        public double side2 { get; private set; }
+        public double side3 { get; private set; }
+        public double S { get; private set; }
+
+    private Triangle() { }
+
+        public static Triangle From3Sides(double Sidefromuser1, double Sidefromuser2, double Sidefromuser3)
         {
             Triangle TriangleObject = new Triangle();
-                if ((sidefromuser1 > 0) && (sidefromuser2 > 0) && (sidefromuser3 > 0))
-                {
-                    TriangleObject.Side1 = sidefromuser1;
-                    TriangleObject.Side2 = sidefromuser2;
-                    TriangleObject.Side3 = sidefromuser3;
-                    return TriangleObject;
-                }
-            else
+            if ((Sidefromuser1 > 0) && (Sidefromuser2 > 0) && (Sidefromuser3 > 0))
             {
-                throw new Exception("Неверно введены данные");
-                //Console.WriteLine("Неверно введены данные");
-
-            }
-        }
-
-        public static Triangle From2SidesAndAngle(double sidefromuser1, double sidefromuser2, double fromuserangle)
-        {
-            Triangle TriangleObject = new Triangle();
-                if ((fromuserangle <= 180) && (fromuserangle >= 0) && (sidefromuser1 > 0) && (sidefromuser2 > 0))
-                {
-                    TriangleObject.Side1 = sidefromuser1;
-                    TriangleObject.Side2 = sidefromuser2;
-                    double radian = fromuserangle * Math.PI / 180;
-                    TriangleObject.Side3 = Math.Sqrt(Math.Pow(TriangleObject.Side1, 2) + Math.Pow(TriangleObject.Side2, 2) - 2 * TriangleObject.Side1 * TriangleObject.Side2 * Math.Cos(radian));
-                    return TriangleObject;
-                }
-                else
-                {
-                    throw new Exception("Неверно введены данные_");
-                    //Console.WriteLine("Неверно введены данные");
-                }
-      
-                }
-           
-
-
-        public static Triangle FromSideAnd2Angles(double fromuserangle, double fromuserangle2, double sidefromuser1)
-        {
-            Triangle TriangleObject = new Triangle();
-            if ((fromuserangle <= 180) && (fromuserangle >= 0) && (fromuserangle2 <= 180) && (fromuserangle2 >= 0) && (sidefromuser1 > 0))
-            {
-                TriangleObject.Side1 = sidefromuser1;
-                double angle3 = 180 - fromuserangle - fromuserangle2;
-                double radian1 = angle3 * Math.PI / 180, radian2= fromuserangle * Math.PI / 180, radian3 = fromuserangle2 * Math.PI / 180;
-                TriangleObject.Side2 = (TriangleObject.Side1 *Math.Sin(radian2))/ Math.Sin(radian1);
-                TriangleObject.Side3 = (TriangleObject.Side1 * Math.Sin(radian3)) / Math.Sin(radian1);
+                TriangleObject.side1 = Sidefromuser1;
+                TriangleObject.side2 = Sidefromuser2;
+                TriangleObject.side3 = Sidefromuser3;
                 return TriangleObject;
             }
             else
             {
                 throw new Exception("Неверно введены данные");
-                //Console.WriteLine("Неверно введены данные");
+            }
+        }
+
+        public static Triangle From2SidesAndAngle(double Sidefromuser1, double Sidefromuser2, double Fromuserangle)
+        {
+            Triangle TriangleObject = new Triangle();
+                if ((Fromuserangle <= 180) && (Fromuserangle >= 0) && (Sidefromuser1 > 0) && (Sidefromuser2 > 0))
+                {
+                    TriangleObject.side1 = Sidefromuser1;
+                    TriangleObject.side2 = Sidefromuser2;
+                    double radian = Fromuserangle * Math.PI / 180;
+                    TriangleObject.side3 = Math.Sqrt(Math.Pow(TriangleObject.side1, 2) + Math.Pow(TriangleObject.side2, 2) - 2 * TriangleObject.side1 * TriangleObject.side2 * Math.Cos(radian));
+                    return TriangleObject;
+                }
+                else
+                {
+                    throw new Exception("Неверно введены данные_");
+                }
+                }
+           
+
+
+        public static Triangle FromSideAnd2Angles(double Sidefromuser1,double Fromuserangle, double Fromuserangle2)
+        {
+            Triangle TriangleObject = new Triangle();
+            if ((Fromuserangle <= 180) && (Fromuserangle >= 0) && (Fromuserangle2 <= 180) && (Fromuserangle2 >= 0) && (Sidefromuser1 > 0))
+            {
+                TriangleObject.side1 = Sidefromuser1;
+                double angle3 = 180 - Fromuserangle - Fromuserangle2;
+                double radian1 = angle3 * Math.PI / 180, radian2= Fromuserangle * Math.PI / 180, radian3 = Fromuserangle2 * Math.PI / 180;
+                TriangleObject.side2 = (TriangleObject.side1 *Math.Sin(radian2))/ Math.Sin(radian1);
+                TriangleObject.side3 = (TriangleObject.side1 * Math.Sin(radian3)) / Math.Sin(radian1);
+                return TriangleObject;
+            }
+            else
+            {
+                throw new Exception("Неверно введены данные");
 
             }
         }
         
-        public double Area()
+        public void Area()
         {   
-            if ((Side1 == 0) && (Side2 == 0) && (Side3 == 0)) {
+            if ((side1 == 0) && (side2 == 0) && (side3 == 0)) {
                 throw new Exception("Неверно задан треугольник");
                 
             }
             else
             {
                 double semiperimeter;
-                semiperimeter = (Side1 + Side2 + Side3) / 2;
-                S = Math.Sqrt(semiperimeter * (semiperimeter - Side1) * (semiperimeter - Side2) * (semiperimeter - Side3));
-                Console.WriteLine(" Площадь треугольника " + S);
-                return S;
+                semiperimeter = (side1 + side2 + side3) / 2;
+                S=Math.Sqrt(semiperimeter * (semiperimeter - side1) * (semiperimeter - side2) * (semiperimeter - side3));
             }
         }
     }

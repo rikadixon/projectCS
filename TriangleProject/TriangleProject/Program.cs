@@ -42,7 +42,7 @@ namespace TriangleProject
                     }
                     if (action == 3)
                     {
-                        Console.WriteLine("Введите два угла и одну сторону сторону между ними ");
+                        Console.WriteLine("Введите одну сторону и два угла ");
                         First = Convert.ToInt32(Console.ReadLine());
                         Second = Convert.ToInt32(Console.ReadLine());
                         Third = Convert.ToInt32(Console.ReadLine());
