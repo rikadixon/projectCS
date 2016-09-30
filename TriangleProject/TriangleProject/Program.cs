@@ -12,49 +12,76 @@ namespace TriangleProject
         {
             var action = 0;
             double First, Second, Third;
-            Triangle DataFromUser =new Triangle();
             while (action == 0)
             {
-                Console.WriteLine("Введите номер действия:");
-                Console.WriteLine("1)три стороны,2)2 стороны и угол между ними,3)два угла и сторона между ними");
-                action = Convert.ToInt32(Console.ReadLine());
+                try
+                {
+                    Console.WriteLine("Введите номер действия:");
+                    Console.WriteLine("1)три стороны,2)2 стороны и угол между ними,3)два угла и сторона между ними");
+                    action = Convert.ToInt32(Console.ReadLine());
 
-                if (action == 1)
-                {
-                    Console.WriteLine("Введите три стороны");
-                    First = Convert.ToInt32(Console.ReadLine());
-                    Second = Convert.ToInt32(Console.ReadLine());
-                    Third = Convert.ToInt32(Console.ReadLine());
-                    DataFromUser.From3Sides(First, Second, Third);
-                    Console.WriteLine(" Площадь треугольника " + DataFromUser.Sqer());
+                    if (action == 1)
+                    {
+                        Console.WriteLine("Введите три стороны");
+                        First = Convert.ToInt32(Console.ReadLine());
+                        Second = Convert.ToInt32(Console.ReadLine());
+                        Third = Convert.ToInt32(Console.ReadLine());
+                        Triangle DataFromUser = Triangle.From3Sides(First, Second, Third);
+                        Console.WriteLine(DataFromUser.Area());
+
+                    }
+                    if (action == 2)
+                    {
+                        Console.WriteLine("Введите две стороны и угол между ними");
+                        First = Convert.ToInt32(Console.ReadLine());
+                        Second = Convert.ToInt32(Console.ReadLine());
+                        Third = Convert.ToInt32(Console.ReadLine());
+                        Triangle DataFromUser = Triangle.From2SidesAndAngle(First, Second, Third);
+                        Console.WriteLine(" Площадь треугольника " + DataFromUser.Area());
+                        //  Console.WriteLine("Cтороны" + DataFromUser.side1 + " " + DataFromUser.side2 + " " + DataFromUser.side3 + " " + DataFromUser.semiperimeter + " " + DataFromUser.S);
+                    }
+                    if (action == 3)
+                    {
+                        Console.WriteLine("Введите два угла и одну сторону сторону между ними ");
+                        First = Convert.ToInt32(Console.ReadLine());
+                        Second = Convert.ToInt32(Console.ReadLine());
+                        Third = Convert.ToInt32(Console.ReadLine());
+                        Triangle DataFromUser = Triangle.FromSideAnd2Angles(First, Second, Third);
+                        Console.WriteLine(" Площадь треугольника " + DataFromUser.Area());
+                        //  Console.WriteLine("Cтороны"+ DataFromUser.side1+" "+ DataFromUser.side2 + " "+DataFromUser.side3 + " " + DataFromUser.semiperimeter+ " " + DataFromUser.S);
+                    }
+                    else
+                    {   
+                        throw new Exception("Неверно введены данные");
+                        //Console.WriteLine("Неверно введены данные");
+
+                    }
                 }
-                if (action == 2)
+
+                catch (FormatException ex)
                 {
-                    Console.WriteLine("Введите две стороны и угол между ними");
-                    First = Convert.ToInt32(Console.ReadLine());
-                    Second = Convert.ToInt32(Console.ReadLine());
-                    Third = Convert.ToInt32(Console.ReadLine());
-                    DataFromUser.From2SidesAndAngle(First, Second, Third);
-                    Console.WriteLine(" Площадь треугольника "+DataFromUser.Sqer());
-                    Console.WriteLine("Cтороны" + DataFromUser.side1 + " " + DataFromUser.side2 + " " + DataFromUser.side3 + " " + DataFromUser.semiperimeter + " " + DataFromUser.S);
-                }
-                if (action == 3)
-                {
-                    Console.WriteLine("Введите два угла и одну сторону сторону между ними ");
-                    First = Convert.ToInt32(Console.ReadLine());
-                    Second = Convert.ToInt32(Console.ReadLine());
-                    Third = Convert.ToInt32(Console.ReadLine());
-                    DataFromUser.FromSideAnd2Angles(First, Second, Third);
-                    Console.WriteLine(" Площадь треугольника " + DataFromUser.Sqer());
-                    Console.WriteLine("Cтороны"+ DataFromUser.side1+" "+ DataFromUser.side2 + " "+DataFromUser.side3 + " " + DataFromUser.semiperimeter+ " " + DataFromUser.S);
-                }
-                if(!(action == 1)&& !(action == 2)&& !(action == 3))
-                {
-                    Console.WriteLine("Не верно введено действие");
                     action = 0;
+                    Console.WriteLine("Ошибка: " + ex.Message + "\n\n");
                 }
+                catch (Exception ex) 
+                {
+                    action = 0;
+                    Console.WriteLine("Ошибка: " + ex.Message + "\n\n");
+                }
+               //finally
+               // ////{
+               // //     catch (ArgumentOutOfRangeException ex) when(!(action == 1) && !(action == 2) && !(action == 3))
+               // {
+
+               //     if (!(action == 1) && !(action == 2) && !(action == 3))
+               //     {
+               //         action = 0;
+               //         Console.WriteLine("Неверный формат действия\n");
+               //     }
+
+               // }
             }
-                Console.ReadKey(true);
+            Console.ReadKey(true);
 
             }
         }
