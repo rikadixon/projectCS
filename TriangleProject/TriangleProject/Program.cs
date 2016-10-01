@@ -53,7 +53,7 @@ namespace TriangleProject
                     if (!(action == 1)&&!(action == 2)&&!(action == 3))
                     {
                         action = 0;
-                        throw new Exception("Неверно введены данные");
+                        throw new ArgumentException("Неверное действие");
                         //Console.WriteLine("Неверно введены данные");
 
                     }

@@ -29,7 +29,7 @@ namespace TriangleProject
             }
             else
             {
-                throw new Exception("Неверно введены данные");
+                throw new ArgumentException("Неверно введены данные");
             }
         }
 
@@ -46,7 +46,7 @@ namespace TriangleProject
                 }
                 else
                 {
-                    throw new Exception("Неверно введены данные_");
+                    throw new ArgumentException("Неверно введены данные");
                 }
                 }
            
@@ -66,7 +66,7 @@ namespace TriangleProject
             }
             else
             {
-                throw new Exception("Неверно введены данные");
+                throw new ArgumentException("Неверно введены данные");
 
             }
         }
@@ -74,7 +74,7 @@ namespace TriangleProject
         public void Area()
         {   
             if ((side1 == 0) && (side2 == 0) && (side3 == 0)) {
-                throw new Exception("Неверно задан треугольник");
+                throw new ArgumentException("Неверно задан треугольник");
                 
             }
             else
