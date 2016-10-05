@@ -48,37 +48,77 @@ namespace Game_in_15
             }
             return indexes;
         }
+        void Swap(int x,int y,int x_0,int y_0) {
 
-     public void Shift(int value)
+            field[x_0, y_0] = field[x, y];
+            field[x, y] = 0;
+        }
+        void check_bottom_cell(int x, int y, int x_0, int y_0) {
+            if (field[x + 1, y] == field[x_0, y_0]) {
+                Swap(x, y, x_0, y_0);
+            }
+         
+        }
+        void check_top_cell(int x, int y, int x_0, int y_0) {
+            if (field[x-1 , y] == field[x_0, y_0])
+            {
+                Swap(x, y, x_0, y_0);
+            }
+        }
+        void check_left_cell(int x, int y, int x_0, int y_0) {
+            if (field[x , y-1] == field[x_0, y_0])
+            {
+                Swap(x, y, x_0, y_0);
+            }
+        }
+        void check_right_cell(int x, int y, int x_0, int y_0) {
+            if (field[x , y+1] == field[x_0, y_0])
+            {
+                Swap(x, y, x_0, y_0);
+            }
+           
+        }
+        public void Shift(int value)
         { int[] index_value = GetLocation(value);
           int[] index_of_0 = GetLocation(0);
           int x = index_value[0], y = index_value[1];
           int x_0 = index_of_0[0], y_0 = index_of_0[1];
-            if (field[x - 1, y - 1] == field[x_0, y_0])
+          if((x-1<=0)&&(y-1<=0)&&(x+1<=Math.Sqrt(field.Length)-1)&&(y+1 <= Math.Sqrt(field.Length)-1))
+            {   check_bottom_cell(x, y, x_0, y_0);
+                check_left_cell(x, y, x_0, y_0);
+                check_right_cell(x, y, x_0, y_0);
+                check_top_cell(x, y, x_0, y_0);
+               
+            }
+            if ((x - 1 < 0) ||(y - 1 < 0) || (x + 1 >= Math.Sqrt(field.Length)) || (y + 1 >= Math.Sqrt(field.Length)))
             {
-                field[x_0, y_0] = field[x, y];
-                field[x, y] = 0;
+                if ((x - 1 < 0) && (y - 1 < 0))
+                {
+                    check_bottom_cell(x, y, x_0, y_0);
+                    check_right_cell(x, y, x_0, y_0);
+                }
+                if ((x + 1 >= Math.Sqrt(field.Length)) && (y - 1 < 0))
+                {
+                    check_right_cell(x, y, x_0, y_0);
+                    check_top_cell(x, y, x_0, y_0);
+                }
+                if ((x - 1 < 0) && (y + 1 >= Math.Sqrt(field.Length)))
+                {
+                    check_bottom_cell(x, y, x_0, y_0);
+                    check_left_cell(x, y, x_0, y_0);
+
+                }
+                if ((x + 1 >= Math.Sqrt(field.Length)) && (y + 1 >= Math.Sqrt(field.Length)))
+                {
+                    check_left_cell(x, y, x_0, y_0);
+                    check_top_cell(x, y, x_0, y_0);
+                }
+               
             }
-            if (field[x - 1, y + 1] == field[x_0, y_0])
-              {
-                field[x_0, y_0] = field[x, y];
-                field[x, y] = 0;
-            }
-            if (field[x + 1, y - 1] == field[x_0, y_0])
-            {
-                field[x_0, y_0] = field[x, y];
-                field[x, y] = 0;
-            }
-            if (field[x + 1, y +1] == field[x_0, y_0])
-            {
-                field[x_0, y_0] = field[x, y];
-                field[x, y] = 0;
-            }
-            else
-            {
-                throw new ArgumentException("Рядом нет пустых ячеек");
-            }
+            else throw new ArgumentException("Рядом нет пустых ячеек ");
+        }
+           
         }
 
         }
-    }
+    
