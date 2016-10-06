@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace Game_in_15
 {
-    class Immutable_Game
+    class Mutable_Game
     {
-        
     }
 }
