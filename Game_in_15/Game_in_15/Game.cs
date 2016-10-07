@@ -19,27 +19,44 @@ namespace GameIn15
             }
         };
         public int[,] field { get; private set; }
+
         public Point[] indexes { get; private set; }
+
         public Game(params int[] values)
         {
-            Point[] buff = new Point[values.Length];
-            int valuse_cout = 0,
-                valuseSize = (int)Math.Sqrt(values.Length);
-            int[,] field_user = new int[valuseSize, valuseSize];
-           
+            indexes = new Point[values.Length];
+            int valuesLengthForCheck = values.Length - 1;
+            int MaxNumber = values[0];
+            for (int i = 1; i < values.Length; i++)
+            {
+                if (values[i] > MaxNumber)
+                {
+                    MaxNumber = values[i];
+                }
+            }
+          if(MaxNumber== valuesLengthForCheck) { 
+                int valuse_cout = 0,
+                    valuseSize = (int)Math.Sqrt(values.Length);
+                int[,] field_user = new int[valuseSize, valuseSize];
+            //if (MaxNumber== valuesLengthForCheck) {
                 for (int i = 0; i < valuseSize; i++)
                 {
                     for (int j = 0; j < valuseSize; j++)
                     {
                         field_user[i, j] = values[valuse_cout];
-                       buff[valuse_cout].x = i;
-                       buff[valuse_cout].y = j;
+                        indexes[values[valuse_cout]].x = i;
+                        indexes[values[valuse_cout]].y = j;
                         valuse_cout++;
                     }
-                    field = field_user;
                 }
-            indexes = buff;
-        }
+                field = field_user; }
+            // indexes = buff;
+            ////}
+            else
+            {
+                    throw new ArgumentException("Не правильно введены данные ");
+                }
+            }
 
         public int this[int x, int y]
         {
@@ -51,7 +68,6 @@ namespace GameIn15
 
         public Point GetLocation(int value)
         {
-           
             return indexes[value];
         }
         void Swap(int x, int y, int x_0, int y_0)
@@ -79,7 +95,7 @@ namespace GameIn15
             Point valuePoint = GetLocation(value);
             Point zeroPoint = GetLocation(0);
             CheckFields(valuePoint.x, valuePoint.y, zeroPoint.y, zeroPoint.y);
-            return this ;
+            return this;
            
         }
     }
