@@ -70,14 +70,14 @@ namespace GameIn15
         {
             return indexes[value];
         }
-        internal void Swap(int x, int y, int x_0, int y_0)
+         void Swap(int x, int y, int x_0, int y_0)
         {
 
             field[x_0, y_0] = field[x, y];
             field[x, y] = 0;
         }
 
-        internal void CheckFields(int x, int y, int x_0, int y_0)
+        protected void CheckFields(int x, int y, int x_0, int y_0)
         { double check = Math.Abs(Math.Sqrt((x - x_0)* (x - x_0) + (y - y_0)* (y - y_0)));
 
             if((x_0<=field.Length)&&(check == 1)&&(y_0 <= field.Length)&&(x_0>=0)&&(y_0>=0))

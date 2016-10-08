@@ -16,7 +16,7 @@ namespace GameIn15
                
                 Game.Point value =Fild.GetLocation(4);
                 Console.WriteLine(value.x + " " + value.y);
-                Immutable_Game Game = new Immutable_Game(0, 7, 8, 1, 2, 3, 4, 5, 6);
+                ImmutableGame Game = new ImmutableGame(0, 7, 8, 1, 2, 3, 4, 5, 6);
                 for (int i = 0; i < 3; i++)
                 {
                     for (int j = 0; j < 3; j++)
