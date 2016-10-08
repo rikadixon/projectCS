@@ -4,7 +4,7 @@ using GameIn15;
 namespace GameTests
 {
     [TestClass]
-    public class Game_test
+    public class GameTest
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]

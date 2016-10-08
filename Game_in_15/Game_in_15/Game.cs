@@ -35,21 +35,21 @@ namespace GameIn15
                 }
             }
           if(MaxNumber== valuesLengthForCheck) { 
-                int valuse_cout = 0,
+                int valuseCout = 0,
                     valuseSize = (int)Math.Sqrt(values.Length);
-                int[,] field_user = new int[valuseSize, valuseSize];
+                int[,] fieldFromUser = new int[valuseSize, valuseSize];
             //if (MaxNumber== valuesLengthForCheck) {
                 for (int i = 0; i < valuseSize; i++)
                 {
                     for (int j = 0; j < valuseSize; j++)
                     {
-                        field_user[i, j] = values[valuse_cout];
-                        indexes[values[valuse_cout]].x = i;
-                        indexes[values[valuse_cout]].y = j;
-                        valuse_cout++;
+                        fieldFromUser[i, j] = values[valuseCout];
+                        indexes[values[valuseCout]].x = i;
+                        indexes[values[valuseCout]].y = j;
+                        valuseCout++;
                     }
                 }
-                field = field_user; }
+                field = fieldFromUser; }
             // indexes = buff;
             ////}
             else
@@ -70,7 +70,7 @@ namespace GameIn15
         {
             return indexes[value];
         }
-         void Swap(int x, int y, int x_0, int y_0)
+         void SwapZeroAndValue(int x, int y, int x_0, int y_0)
         {
 
             field[x_0, y_0] = field[x, y];
@@ -82,7 +82,7 @@ namespace GameIn15
 
             if((x_0<=field.Length)&&(check == 1)&&(y_0 <= field.Length)&&(x_0>=0)&&(y_0>=0))
             {
-                Swap(x, y, x_0, y_0);
+                SwapZeroAndValue(x, y, x_0, y_0);
             }
             else
             {
