@@ -29,16 +29,13 @@ namespace RoughDesign
         void Abilitie(Charter mainUserCharter, Charter anotherUserCharter);
     }
 
-    public abstract class Abilities 
+    public abstract class Abilities
     {
-       public void Abilitie() { }
+        double mpCost;
     }
-    public class FireBall: Abilities, IAbilitiesAnotherCharter
+    public class FireBall : Abilities, IAbilitiesAnotherCharter
     {
         double xpDamage;
-        double mpCost;
-        readonly bool useOnYourself = false;
-        readonly bool useOnAnotherCharter = true;
         public void Abilitie(Charter mainUserCharter, Charter anotherUserCharter)
         {
         }
@@ -46,9 +43,6 @@ namespace RoughDesign
     public class Lightning : Abilities, IAbilitiesAnotherCharter
     {
         double xpDamage;
-        double mpCost;
-        readonly bool useOnYourself = false;
-        readonly bool useOnAnotherCharter = true;
         public void Abilitie(Charter userCharter, Charter anotherUserCharter)
         {
         }
@@ -56,19 +50,14 @@ namespace RoughDesign
     public class WindFlow : Abilities, IAbilitiesAnotherCharter
     {
         double xpDamage;
-        double mpCost;
-        readonly bool useOnYourself = false;
-        readonly bool useOnAnotherCharter = true;
         public  void Abilitie(Charter userCharter, Charter anotherUserCharter)
         {
         }
     }
     public class Regeneration : Abilities, IAbilitiesOnYourself
-    {
+    {   
         double xpRegen;
         double mpRegen;
-        readonly bool useOnYourself = true;
-        readonly bool useOnAnotherCharter = false;
         public void Abilitie(Charter userCharter)
         {
         }
