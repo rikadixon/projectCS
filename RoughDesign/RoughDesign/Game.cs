@@ -20,47 +20,56 @@ namespace RoughDesign
         {
         }
     }
+    interface IAbilitiesOnYourself
+    {
+        void Abilitie(Charter userCharter);
+    }
+    interface IAbilitiesAnotherCharter
+    {
+        void Abilitie(Charter mainUserCharter, Charter anotherUserCharter);
+    }
+
     public abstract class Abilities 
     {
-       public virtual void Abilitie(Charter userCharter) { }
+       public void Abilitie() { }
     }
-    public class FireBall: Abilities
+    public class FireBall: Abilities, IAbilitiesAnotherCharter
     {
         double xpDamage;
         double mpCost;
         readonly bool useOnYourself = false;
         readonly bool useOnAnotherCharter = true;
-        public override void Abilitie(Charter userCharter)
+        public void Abilitie(Charter mainUserCharter, Charter anotherUserCharter)
         {
         }
     }
-    public class Lightning : Abilities
+    public class Lightning : Abilities, IAbilitiesAnotherCharter
     {
         double xpDamage;
         double mpCost;
         readonly bool useOnYourself = false;
         readonly bool useOnAnotherCharter = true;
-        public override void Abilitie(Charter userCharter)
+        public void Abilitie(Charter userCharter, Charter anotherUserCharter)
         {
         }
     }
-    public class WindFlow : Abilities
+    public class WindFlow : Abilities, IAbilitiesAnotherCharter
     {
         double xpDamage;
         double mpCost;
         readonly bool useOnYourself = false;
         readonly bool useOnAnotherCharter = true;
-        public override void Abilitie(Charter userCharter)
+        public  void Abilitie(Charter userCharter, Charter anotherUserCharter)
         {
         }
     }
-    public class Regeneration : Abilities
+    public class Regeneration : Abilities, IAbilitiesOnYourself
     {
         double xpRegen;
         double mpRegen;
         readonly bool useOnYourself = true;
         readonly bool useOnAnotherCharter = false;
-        public override void Abilitie(Charter userCharter)
+        public void Abilitie(Charter userCharter)
         {
         }
     }
