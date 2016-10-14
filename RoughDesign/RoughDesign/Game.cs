@@ -16,7 +16,7 @@ namespace RoughDesign
         public double speedOfRegenXP { get; protected set; }
         public double speedOfRegenMP { get; protected set; }
         public List<Abilities> listOfAbilities{ get; protected set; }
-        void UseAbilitie(Charter userCharterr,int numberOfAbilitie)
+        void UseAbilitie(List<Charter> anotherUserCharters, int numberOfAbilitie)
         {
         }
     }
@@ -26,7 +26,7 @@ namespace RoughDesign
     }
     interface IAbilitiesAnotherCharter
     {
-        void Abilitie(Charter mainUserCharter, Charter anotherUserCharter);
+        void Abilitie(Charter mainUserCharter, List<Charter> anotherUserCharters);
     }
 
     public abstract class Abilities
@@ -36,21 +36,21 @@ namespace RoughDesign
     public class FireBall : Abilities, IAbilitiesAnotherCharter
     {
         double xpDamage;
-        public void Abilitie(Charter mainUserCharter, Charter anotherUserCharter)
+        public void Abilitie(Charter mainUserCharter, List<Charter> anotherUserCharters)
         {
         }
     }
     public class Lightning : Abilities, IAbilitiesAnotherCharter
     {
         double xpDamage;
-        public void Abilitie(Charter userCharter, Charter anotherUserCharter)
+        public void Abilitie(Charter userCharter, List<Charter> anotherUserCharters)
         {
         }
     }
     public class WindFlow : Abilities, IAbilitiesAnotherCharter
     {
         double xpDamage;
-        public  void Abilitie(Charter userCharter, Charter anotherUserCharter)
+        public  void Abilitie(Charter userCharter, List<Charter> anotherUserCharters)
         {
         }
     }
