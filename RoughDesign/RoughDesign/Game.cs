@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace RoughDesign
 {
+    public interface IFrendlyCharacter
+    {
+
+    }
+
+
    public class Charter
     {
         public string charterName { get; set; }
@@ -19,14 +25,22 @@ namespace RoughDesign
         void UseAbilitie(List<Charter> anotherUserCharters, int numberOfAbilitie)
         {
         }
+
+        public Charter() { }
+        public Charter(List<Abilities> listOfAbilitiesFromUser)
+        {
+            listOfAbilities = new List<Abilities>();
+            listOfAbilities = listOfAbilitiesFromUser;
+        }
     }
+    
     interface IAbilitiesOnYourself
     {
-        void Abilitie(Charter userCharter);
+        void Abilitie();
     }
     interface IAbilitiesAnotherCharter
     {
-        void Abilitie(Charter mainUserCharter, List<Charter> anotherUserCharters);
+        void Abilitie(Charter target);
     }
 
     public abstract class Abilities
@@ -36,29 +50,55 @@ namespace RoughDesign
     public class FireBall : Abilities, IAbilitiesAnotherCharter
     {
         double xpDamage;
-        public void Abilitie(Charter mainUserCharter, List<Charter> anotherUserCharters)
+        Charter owner;
+        public FireBall(Charter owner)
         {
+            this.owner = owner;
+        }
+
+        public void Abilitie(Charter target)
+        {
+
         }
     }
     public class Lightning : Abilities, IAbilitiesAnotherCharter
     {
         double xpDamage;
-        public void Abilitie(Charter userCharter, List<Charter> anotherUserCharters)
+        Charter owner;
+        public Lightning(Charter owner)
         {
+            this.owner = owner;
+        }
+
+        public void Abilitie(Charter target)
+        {
+
         }
     }
     public class WindFlow : Abilities, IAbilitiesAnotherCharter
     {
         double xpDamage;
-        public  void Abilitie(Charter userCharter, List<Charter> anotherUserCharters)
+        Charter owner;
+        public WindFlow(Charter owner)
         {
+            this.owner = owner;
+        }
+
+        public void Abilitie(Charter target)
+        {
+
         }
     }
     public class Regeneration : Abilities, IAbilitiesOnYourself
     {   
         double xpRegen;
         double mpRegen;
-        public void Abilitie(Charter userCharter)
+        Charter owner;
+        public Regeneration(Charter owner)
+        {
+            this.owner = owner;
+        }
+        public void Abilitie()
         {
         }
     }
