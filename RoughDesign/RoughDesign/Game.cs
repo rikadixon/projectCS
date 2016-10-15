@@ -24,8 +24,6 @@ namespace RoughDesign
         public double maxMP { get; protected set; }
         public double speedOfRegenXP { get; protected set; }
         public double speedOfRegenMP { get; protected set; }
-        public FrendlyCharters frends { get; protected set; }
-        public EnemyCharter enemies { get; protected set; }
         public List<Abilities> listOfAbilities{ get; protected set; }
         public List<FrendlyCharters> listOfFrends { get; protected set; }
         public List<EnemyCharter> listOfEnemis { get; protected set; }
