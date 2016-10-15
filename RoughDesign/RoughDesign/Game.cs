@@ -22,6 +22,7 @@ namespace RoughDesign
         public double mp { get; protected set; }
         public double maxXP { get; protected set; }
         public double maxMP { get; protected set; }
+        public GameField.Point locacion { get; protected set; }
         public double speedOfRegenXP { get; protected set; }
         public double speedOfRegenMP { get; protected set; }
         public List<Abilities> listOfAbilities{ get; protected set; }
@@ -30,7 +31,10 @@ namespace RoughDesign
         void UseAbilitie(List<Charter> anotherUserCharters, int numberOfAbilitie)
         {
         }
+        public void GoToAnotherCell(GameField.Point newLocacion)
+        {
 
+        }
         public Charter() { }
         public Charter(List<Abilities> listOfAbilitiesFromUser)
         {
@@ -51,7 +55,7 @@ namespace RoughDesign
 
     public class EnemyCharter:IEnemyCharacter
     {
-        public List<Charter> listOfEnemis { get; protected set; }
+        public List<Charter> listOfEnemis { get; protected set;}
         EnemyCharter(List<Charter> listOfEnemis)
         {
             listOfEnemis = new List<Charter>();
@@ -66,12 +70,17 @@ namespace RoughDesign
 
     interface IAbilitiesAnotherCharter
     {
-        void Abilitie(Charter target);
+        void Abilitie(GameField.Point location);
+    }
+    interface IAbilitiesOnFrend
+    {
+        void Abilitie(GameField.Point location);
     }
 
     public abstract class Abilities
     {
         double mpCost;
+       
     }
 
     public class FireBall : Abilities, IAbilitiesAnotherCharter
@@ -83,10 +92,12 @@ namespace RoughDesign
             this.owner = owner;
         }
 
-        public void Abilitie(Charter target)
+        public void Abilitie(GameField.Point location)
         {
 
         }
+        
+        
     }
 
     public class Lightning : Abilities, IAbilitiesAnotherCharter
@@ -96,9 +107,9 @@ namespace RoughDesign
         public Lightning(Charter owner)
         {
             this.owner = owner;
-        }
 
-        public void Abilitie(Charter target)
+        }
+        public void Abilitie(GameField.Point location)
         {
 
         }
@@ -111,14 +122,29 @@ namespace RoughDesign
         public WindFlow(Charter owner)
         {
             this.owner = owner;
+            
         }
 
-        public void Abilitie(Charter target)
+        public void Abilitie(GameField.Point location)
         {
 
         }
     }
 
+    public class Healing : Abilities, IAbilitiesOnFrend
+    {
+        double xpRegen;
+        Charter owner;
+        public Healing(Charter owner)
+        {
+            this.owner = owner;
+        }
+
+        public void Abilitie(GameField.Point location)
+        {
+
+        }
+    }
     public class Regeneration : Abilities, IAbilitiesOnYourself
     {   
         double xpRegen;
@@ -131,5 +157,25 @@ namespace RoughDesign
         public void Abilitie()
         {
         }
+    }
+    public class GameField
+    {
+        public struct Point
+        {
+            public int x;
+            public int y;
+            public Point(int X, int Y)
+            {
+                x = X;
+                y = Y;
+            }
+        };
+        public List<Charter> allCharters { get; protected set; }
+        GameField(int row,int col)
+        {
+
+        }
+       
+
     }
 }
