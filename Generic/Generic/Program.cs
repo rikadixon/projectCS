@@ -7,22 +7,22 @@ using System.Threading.Tasks;
 namespace Generic
 {
         
-    public class Processor
+    public class ProcessorBilder
     {
-        public static Processor<TEngine> CreateEngine<TEngine>()
+        public static SecondProcessorBilder<TEngine> CreateEngine<TEngine>()
         {
-            return new Processor<TEngine>();
+            return new SecondProcessorBilder<TEngine>();
         }
     }
 
-    public class Processor<TEngine>
+    public class SecondProcessorBilder<TEngine>
     {
-        public Processor<TEngine, TEntity> For<TEntity>()
+        public ThirdProcessorBilder<TEngine, TEntity> For<TEntity>()
         {
-            return new Processor<TEngine, TEntity>();
+            return new ThirdProcessorBilder<TEngine, TEntity>();
         }
     }
-    public class Processor<TEngine, TEntity>
+    public class ThirdProcessorBilder<TEngine, TEntity>
     {
         public Processor<TEngine, TEntity, TLogger> With<TLogger>()
         {
@@ -38,7 +38,7 @@ namespace Generic
     {
         static void Main(string[] args)
         {             
-            var p = Processor.CreateEngine<int>().For<int>().With<int>();
+            var p = ProcessorBilder.CreateEngine<int>().For<int>().With<int>();
             Console.ReadKey(true);
         }
     }

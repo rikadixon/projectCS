@@ -8,48 +8,49 @@ namespace Generic
 {
    public class RepositoryID
     {
-        public Dictionary<Guid, Object> obj { get; private set; }
-        public Dictionary<Type, List<Guid>> guidObjData { get; private set; }
-        public T CreateObj<T>(T obj)
+        private Dictionary<Guid, Object> objectData;
+        private Dictionary<Type, List<Guid>> guidObjectData;
+        public T CreateObj<T>(T objectFromUser)
             where T: new()
         {
-            T newObj = new T();
-            newObj = obj;
+            T newObject = objectFromUser;
             Guid myguidData = Guid.NewGuid();
 
-            this.obj.Add(myguidData, newObj);
+            objectData.Add(myguidData, newObject);
 
-            if (guidObjData.ContainsKey(newObj.GetType()))
+            if (guidObjectData.ContainsKey(newObject.GetType()))
             {
-                guidObjData[newObj.GetType()].Add(myguidData);
-            } else
+                guidObjectData[newObject.GetType()].Add(myguidData);
+            }
+            else
             {
                 var list = new List<Guid>();
                 list.Add(myguidData);
 
-                guidObjData.Add(newObj.GetType(), list);
+                guidObjectData.Add(newObject.GetType(), list);
             }
             
-            return newObj;
+            return newObject;
         }
         public Dictionary<Guid, T> OutputsGuidAndObj <T>()
             where T: new()
         {
-            var list = guidObjData[(new T()).GetType()];
+            var list = guidObjectData[(new T()).GetType()];
 
             var result = new Dictionary<Guid, T>();
 
             foreach (Guid guid in list)
             {
-                result.Add(guid, (T)obj[guid]);
+                result.Add(guid, (T)objectData[guid]);
             }
 
             return result;
         }
         public object OutputsObjByGuid(Guid guidData) {
-            if (obj.ContainsKey(guidData))
+            object value;
+            if (objectData.TryGetValue(guidData,out value))
             {
-                return obj[guidData];
+                return value;
             }
             else {
                 return null;
