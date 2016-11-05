@@ -9,11 +9,6 @@ namespace Plugin1
 {
     public class FirstPlugin:IPlugin
     {
-        public string PluginName { get; set; }
-
-        public FirstPlugin()
-        {
-            this.PluginName = "Hi, I'm First Plugin ^^";
-        }
+     public string PluginName { get {return "Hi, I'm First Plugin ^^";} }
     }
 }
