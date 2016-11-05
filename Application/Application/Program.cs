@@ -25,10 +25,11 @@ namespace Application
             dllFiles.SelectMany(
            file => Assembly.LoadFrom(file.FullName).GetTypesInterface(typeof(IPlugin))).ToList();
 
-            List<IPlugin> plugins =
-            typesOfPlugins.Select(type => (IPlugin)Activator.CreateInstance(type)).ToList();
-
-            plugins.ForEach(plugin => Console.WriteLine(plugin.PluginName));
+             if (typesOfPlugins.Select(type  => (IPlugin)type.GetConstructor(Type.EmptyTypes)) != null) {
+                List<IPlugin> plugins =
+                typesOfPlugins.Select(type => (IPlugin)Activator.CreateInstance(type)).ToList();
+                plugins.ForEach(plugin => Console.WriteLine(plugin.PluginName));
+            }
             Console.ReadKey(true);
         }
     }
