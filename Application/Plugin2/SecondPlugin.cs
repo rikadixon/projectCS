@@ -9,11 +9,7 @@ namespace Plugin2
 {
     public class SecondPlugin:IPlugin
     {
-        public string PluginName { get; set; }
-
-        public SecondPlugin()
-        {
-            this.PluginName = "Hi, I'm Second Plugin =^^=";
+       public string PluginName { get {return  "Hi, I'm Second Plugin =^^="};}
         }
     }
 }
